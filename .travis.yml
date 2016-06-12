@@ -1,0 +1,7 @@
+language: node_js
+php:
+  -"node"
+  - "6"
+  - "6.1"
+  - "5"
+  - "iojsx"
