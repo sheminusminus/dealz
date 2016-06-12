@@ -2,9 +2,10 @@
   "name": "dealz",
   "version": "0.0.1",
   "description": "deals app idea",
-  "main": "app/index.js",
+  "main": "src/app.js",
   "scripts": {
-    "dev": "webpack-dev-server --port 8000 --config webpack.config.js"
+    "dev": "webpack-dev-server --port 8000 --config webpack.config.js",
+    "test": "mocha test"
   },
   "repository": {
     "type": "git",
@@ -18,7 +19,8 @@
   "homepage": "https://github.com/sheminusminus/dealz#readme",
   "dependencies": {
     "react": "^15.1.0",
-    "react-dom": "^15.1.0"
+    "react-dom": "^15.1.0",
+    "reactcss": "^1.0.3"
   },
   "devDependencies": {
     "babel-core": "^6.9.1",
