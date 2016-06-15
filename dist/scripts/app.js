@@ -20635,6 +20635,10 @@
 
 	var _Header2 = _interopRequireDefault(_Header);
 
+	var _Menu = __webpack_require__(345);
+
+	var _Menu2 = _interopRequireDefault(_Menu);
+
 	var _Footer = __webpack_require__(343);
 
 	var _Footer2 = _interopRequireDefault(_Footer);
@@ -20644,16 +20648,93 @@
 	var AppBase = _react2.default.createClass({
 		displayName: 'AppBase',
 		render: function render() {
+			var menuOptions = ['Home', 'Marketplace', 'Maproom'];
 			return _react2.default.createElement(
 				'div',
 				{ className: 'appBase' },
 				_react2.default.createElement(_Header2.default, null),
+				_react2.default.createElement(_Menu2.default, { options: menuOptions }),
 				_react2.default.createElement(_Footer2.default, null)
 			);
 		}
 	});
 
 	exports.default = AppBase;
+
+/***/ },
+/* 345 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _MenuOption = __webpack_require__(346);
+
+	var _MenuOption2 = _interopRequireDefault(_MenuOption);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Menu = _react2.default.createClass({
+		displayName: 'Menu',
+		makeOptions: function makeOptions() {
+			var options = [];
+			for (var i = 0; i < this.props.options.length; i++) {
+				var k = 'opt' + i;
+				options.push(_react2.default.createElement(_MenuOption2.default, { index: i, key: k, text: this.props.options[i] }));
+			}
+			return options;
+		},
+		render: function render() {
+			var options = this.makeOptions();
+			return _react2.default.createElement(
+				'ul',
+				{ className: 'menu' },
+				options
+			);
+		}
+	});
+
+	exports.default = Menu;
+
+/***/ },
+/* 346 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var MenuOption = _react2.default.createClass({
+		displayName: "MenuOption",
+		getItemText: function getItemText() {
+			return this.props.text;
+		},
+		render: function render() {
+			var text = this.getItemText();
+			return _react2.default.createElement(
+				"li",
+				{ className: "menuOption" },
+				text
+			);
+		}
+	});
+
+	exports.default = MenuOption;
 
 /***/ }
 /******/ ]);

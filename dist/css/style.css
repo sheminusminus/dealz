@@ -12,6 +12,9 @@ body {
   font-weight: 400;
   text-align: center; }
 
+.menu {
+  list-style: none; }
+
 .footer {
   width: 100%;
   max-width: 100%;
