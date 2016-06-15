@@ -1,11 +1,29 @@
 $bodyBg: #333333;
+$footerText: #888888;
 
 body {
 	background-color: $bodyBg;
 	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 }
 
+.header {
+	width: 100%;
+	max-width: 100%;
+	height: 80px;
+}
+
 .pageTitle {
 	color: #FFF;
 	font-weight: 400;
+	text-align: center;
+}
+
+.footer {
+	width: 100%;
+	max-width: 100%;
+	height: 40px;
+	position: absolute;
+	top: calc(100% - 40px);
+	color: $footerText;
+	text-align: center;
 }

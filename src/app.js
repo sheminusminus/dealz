@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PageBase from './containers/Base';
+import AppBase from './containers/AppBase';
 
 ReactDOM.render(
-	<PageBase />,
+	<AppBase />,
 	document.querySelector('#app')
 );
