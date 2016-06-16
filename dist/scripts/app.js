@@ -61,7 +61,7 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _AppBase = __webpack_require__(344);
+	var _AppBase = __webpack_require__(169);
 
 	var _AppBase2 = _interopRequireDefault(_AppBase);
 
@@ -20379,180 +20379,82 @@
 	module.exports = ReactMount.renderSubtreeIntoContainer;
 
 /***/ },
-/* 169 */,
-/* 170 */,
-/* 171 */,
-/* 172 */,
-/* 173 */,
-/* 174 */,
-/* 175 */,
-/* 176 */,
-/* 177 */,
-/* 178 */,
-/* 179 */,
-/* 180 */,
-/* 181 */,
-/* 182 */,
-/* 183 */,
-/* 184 */,
-/* 185 */,
-/* 186 */,
-/* 187 */,
-/* 188 */,
-/* 189 */,
-/* 190 */,
-/* 191 */,
-/* 192 */,
-/* 193 */,
-/* 194 */,
-/* 195 */,
-/* 196 */,
-/* 197 */,
-/* 198 */,
-/* 199 */,
-/* 200 */,
-/* 201 */,
-/* 202 */,
-/* 203 */,
-/* 204 */,
-/* 205 */,
-/* 206 */,
-/* 207 */,
-/* 208 */,
-/* 209 */,
-/* 210 */,
-/* 211 */,
-/* 212 */,
-/* 213 */,
-/* 214 */,
-/* 215 */,
-/* 216 */,
-/* 217 */,
-/* 218 */,
-/* 219 */,
-/* 220 */,
-/* 221 */,
-/* 222 */,
-/* 223 */,
-/* 224 */,
-/* 225 */,
-/* 226 */,
-/* 227 */,
-/* 228 */,
-/* 229 */,
-/* 230 */,
-/* 231 */,
-/* 232 */,
-/* 233 */,
-/* 234 */,
-/* 235 */,
-/* 236 */,
-/* 237 */,
-/* 238 */,
-/* 239 */,
-/* 240 */,
-/* 241 */,
-/* 242 */,
-/* 243 */,
-/* 244 */,
-/* 245 */,
-/* 246 */,
-/* 247 */,
-/* 248 */,
-/* 249 */,
-/* 250 */,
-/* 251 */,
-/* 252 */,
-/* 253 */,
-/* 254 */,
-/* 255 */,
-/* 256 */,
-/* 257 */,
-/* 258 */,
-/* 259 */,
-/* 260 */,
-/* 261 */,
-/* 262 */,
-/* 263 */,
-/* 264 */,
-/* 265 */,
-/* 266 */,
-/* 267 */,
-/* 268 */,
-/* 269 */,
-/* 270 */,
-/* 271 */,
-/* 272 */,
-/* 273 */,
-/* 274 */,
-/* 275 */,
-/* 276 */,
-/* 277 */,
-/* 278 */,
-/* 279 */,
-/* 280 */,
-/* 281 */,
-/* 282 */,
-/* 283 */,
-/* 284 */,
-/* 285 */,
-/* 286 */,
-/* 287 */,
-/* 288 */,
-/* 289 */,
-/* 290 */,
-/* 291 */,
-/* 292 */,
-/* 293 */,
-/* 294 */,
-/* 295 */,
-/* 296 */,
-/* 297 */,
-/* 298 */,
-/* 299 */,
-/* 300 */,
-/* 301 */,
-/* 302 */,
-/* 303 */,
-/* 304 */,
-/* 305 */,
-/* 306 */,
-/* 307 */,
-/* 308 */,
-/* 309 */,
-/* 310 */,
-/* 311 */,
-/* 312 */,
-/* 313 */,
-/* 314 */,
-/* 315 */,
-/* 316 */,
-/* 317 */,
-/* 318 */,
-/* 319 */,
-/* 320 */,
-/* 321 */,
-/* 322 */,
-/* 323 */,
-/* 324 */,
-/* 325 */,
-/* 326 */,
-/* 327 */,
-/* 328 */,
-/* 329 */,
-/* 330 */,
-/* 331 */,
-/* 332 */,
-/* 333 */,
-/* 334 */,
-/* 335 */,
-/* 336 */,
-/* 337 */,
-/* 338 */,
-/* 339 */,
-/* 340 */,
-/* 341 */,
-/* 342 */
+/* 169 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Header = __webpack_require__(170);
+
+	var _Header2 = _interopRequireDefault(_Header);
+
+	var _SideMenu = __webpack_require__(175);
+
+	var _SideMenu2 = _interopRequireDefault(_SideMenu);
+
+	var _Footer = __webpack_require__(173);
+
+	var _Footer2 = _interopRequireDefault(_Footer);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var AppBase = _react2.default.createClass({
+		displayName: 'AppBase',
+		getInitialState: function getInitialState() {
+			return {
+				menuOpen: false,
+				menuOptions: [],
+				activeOption: 0,
+				userInfo: {}
+			};
+		},
+		componentWillMount: function componentWillMount() {
+			this.setState({
+				menuOptions: ['Home', 'Market', 'Maps', 'Groups', 'Account']
+			});
+		},
+		toggleMenu: function toggleMenu(evt) {
+			this.setState({
+				menuOpen: !this.state.menuOpen
+			});
+		},
+		menuSelection: function menuSelection(evt) {
+			var selection = parseInt(evt.target.getAttribute('data-optionIndex'));
+			this.setState({
+				activeOption: selection
+			});
+			this.toggleMenu();
+		},
+		render: function render() {
+			var menuOptions = this.state.menuOptions;
+			var activeOption = this.state.activeOption;
+			var menuOpen = this.state.menuOpen;
+			return _react2.default.createElement(
+				'div',
+				{ className: 'appBase' },
+				_react2.default.createElement(
+					'div',
+					{ className: 'container' },
+					_react2.default.createElement(_Header2.default, null),
+					_react2.default.createElement(_SideMenu2.default, { iconClick: this.toggleMenu, options: menuOptions, selectNew: this.menuSelection, active: activeOption, open: menuOpen }),
+					_react2.default.createElement(_Footer2.default, null)
+				)
+			);
+		}
+	});
+
+	exports.default = AppBase;
+
+/***/ },
+/* 170 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -20585,126 +20487,8 @@
 	exports.default = Header;
 
 /***/ },
-/* 343 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var Footer = _react2.default.createClass({
-		displayName: "Footer",
-		render: function render() {
-			return _react2.default.createElement(
-				"div",
-				{ className: "footer" },
-				_react2.default.createElement(
-					"p",
-					{ className: "copyright" },
-					"emily kolar 2016"
-				)
-			);
-		}
-	});
-
-	exports.default = Footer;
-
-/***/ },
-/* 344 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _Header = __webpack_require__(342);
-
-	var _Header2 = _interopRequireDefault(_Header);
-
-	var _Menu = __webpack_require__(345);
-
-	var _Menu2 = _interopRequireDefault(_Menu);
-
-	var _Footer = __webpack_require__(343);
-
-	var _Footer2 = _interopRequireDefault(_Footer);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var AppBase = _react2.default.createClass({
-		displayName: 'AppBase',
-		render: function render() {
-			var menuOptions = ['Home', 'Marketplace', 'Maproom'];
-			return _react2.default.createElement(
-				'div',
-				{ className: 'appBase' },
-				_react2.default.createElement(_Header2.default, null),
-				_react2.default.createElement(_Menu2.default, { options: menuOptions }),
-				_react2.default.createElement(_Footer2.default, null)
-			);
-		}
-	});
-
-	exports.default = AppBase;
-
-/***/ },
-/* 345 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _MenuOption = __webpack_require__(346);
-
-	var _MenuOption2 = _interopRequireDefault(_MenuOption);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var Menu = _react2.default.createClass({
-		displayName: 'Menu',
-		makeOptions: function makeOptions() {
-			var options = [];
-			for (var i = 0; i < this.props.options.length; i++) {
-				var k = 'opt' + i;
-				options.push(_react2.default.createElement(_MenuOption2.default, { index: i, key: k, text: this.props.options[i] }));
-			}
-			return options;
-		},
-		render: function render() {
-			var options = this.makeOptions();
-			return _react2.default.createElement(
-				'ul',
-				{ className: 'menu' },
-				options
-			);
-		}
-	});
-
-	exports.default = Menu;
-
-/***/ },
-/* 346 */
+/* 171 */,
+/* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -20725,16 +20509,134 @@
 			return this.props.text;
 		},
 		render: function render() {
+			var classes = "menuOption";
 			var text = this.getItemText();
+			if (this.props.active) {
+				classes += " active";
+			}
 			return _react2.default.createElement(
 				"li",
-				{ className: "menuOption" },
-				text
+				{ className: classes },
+				_react2.default.createElement(
+					"a",
+					{ href: "#", className: "optionAnchor", onClick: this.props.selectNew, "data-optionIndex": this.props.index },
+					text
+				)
 			);
 		}
 	});
 
 	exports.default = MenuOption;
+
+/***/ },
+/* 173 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Footer = _react2.default.createClass({
+		displayName: "Footer",
+		render: function render() {
+			return _react2.default.createElement("div", { className: "footer" });
+		}
+	});
+
+	exports.default = Footer;
+
+/***/ },
+/* 174 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var MenuIcon = _react2.default.createClass({
+		displayName: "MenuIcon",
+		render: function render() {
+			var toggleElement = "side-menu";
+			var toggleClass = "open";
+			return _react2.default.createElement("div", { className: "icon menuIcon", onClick: this.props.iconClick });
+		}
+	});
+
+	exports.default = MenuIcon;
+
+/***/ },
+/* 175 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _MenuOption = __webpack_require__(172);
+
+	var _MenuOption2 = _interopRequireDefault(_MenuOption);
+
+	var _MenuIcon = __webpack_require__(174);
+
+	var _MenuIcon2 = _interopRequireDefault(_MenuIcon);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var SideMenu = _react2.default.createClass({
+		displayName: 'SideMenu',
+		makeOptions: function makeOptions() {
+			var options = [];
+			for (var i = 0; i < this.props.options.length; i++) {
+				var k = 'opt' + i;
+				var isActive = this.props.active == i ? true : false;
+				options.push(_react2.default.createElement(_MenuOption2.default, { selectNew: this.props.selectNew, active: isActive, index: i, key: k, text: this.props.options[i] }));
+			}
+			return options;
+		},
+		render: function render() {
+			var options = this.makeOptions();
+			var menuClasses = "sideMenu";
+			var menuListClasses = "menuList";
+			if (this.props.open) {
+				menuClasses += " open";
+				menuListClasses += " open";
+			}
+			return _react2.default.createElement(
+				'div',
+				{ className: menuClasses, id: 'side-menu' },
+				_react2.default.createElement(_MenuIcon2.default, { iconClick: this.props.iconClick }),
+				_react2.default.createElement(
+					'ul',
+					{ className: menuListClasses },
+					options
+				)
+			);
+		}
+	});
+
+	exports.default = SideMenu;
 
 /***/ }
 /******/ ]);
