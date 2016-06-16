@@ -20418,32 +20418,40 @@
 		},
 		componentWillMount: function componentWillMount() {
 			this.setState({
-				menuOptions: ['Home', 'Market', 'Maps', 'Groups', 'Account']
+				menuOptions: ['home', 'market', 'maps', 'groups', 'account']
 			});
 		},
+
+		// what happens when the menu icon is clicked
 		toggleMenu: function toggleMenu(evt) {
 			this.setState({
 				menuOpen: !this.state.menuOpen
 			});
 		},
+
+		// what happens when a new menu option is selected
 		menuSelection: function menuSelection(evt) {
 			var selection = parseInt(evt.target.getAttribute('data-optionIndex'));
 			this.setState({
 				activeOption: selection
 			});
-			this.toggleMenu();
+			var that = this;
+			setTimeout(function () {
+				that.toggleMenu();
+			}, 240);
 		},
 		render: function render() {
 			var menuOptions = this.state.menuOptions;
 			var activeOption = this.state.activeOption;
 			var menuOpen = this.state.menuOpen;
+			var headerTitle = activeOption > 0 ? menuOptions[activeOption] : "apptitle";
 			return _react2.default.createElement(
 				'div',
 				{ className: 'appBase' },
 				_react2.default.createElement(
 					'div',
 					{ className: 'container' },
-					_react2.default.createElement(_Header2.default, null),
+					_react2.default.createElement(_Header2.default, { titleText: headerTitle }),
 					_react2.default.createElement(_SideMenu2.default, { iconClick: this.toggleMenu, options: menuOptions, selectNew: this.menuSelection, active: activeOption, open: menuOpen }),
 					_react2.default.createElement(_Footer2.default, null)
 				)
@@ -20457,7 +20465,7 @@
 /* 170 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -20467,19 +20475,19 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _HeaderInfo = __webpack_require__(176);
+
+	var _HeaderInfo2 = _interopRequireDefault(_HeaderInfo);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Header = _react2.default.createClass({
-		displayName: "Header",
+		displayName: 'Header',
 		render: function render() {
 			return _react2.default.createElement(
-				"div",
-				{ className: "header" },
-				_react2.default.createElement(
-					"h1",
-					{ className: "pageTitle" },
-					"apptitle"
-				)
+				'div',
+				{ className: 'header' },
+				_react2.default.createElement(_HeaderInfo2.default, { titleText: this.props.titleText })
 			);
 		}
 	});
@@ -20505,15 +20513,22 @@
 
 	var MenuOption = _react2.default.createClass({
 		displayName: "MenuOption",
+
+		// get the text for this option
 		getItemText: function getItemText() {
 			return this.props.text;
 		},
-		render: function render() {
-			var classes = "menuOption";
-			var text = this.getItemText();
+
+		// get the class names for this option
+		getItemClasses: function getItemClasses() {
 			if (this.props.active) {
-				classes += " active";
+				return "menuOption active";
 			}
+			return "menuOption";
+		},
+		render: function render() {
+			var classes = this.getItemClasses();
+			var text = this.getItemText();
 			return _react2.default.createElement(
 				"li",
 				{ className: classes },
@@ -20572,8 +20587,6 @@
 	var MenuIcon = _react2.default.createClass({
 		displayName: "MenuIcon",
 		render: function render() {
-			var toggleElement = "side-menu";
-			var toggleClass = "open";
 			return _react2.default.createElement("div", { className: "icon menuIcon", onClick: this.props.iconClick });
 		}
 	});
@@ -20606,7 +20619,7 @@
 
 	var SideMenu = _react2.default.createClass({
 		displayName: 'SideMenu',
-		makeOptions: function makeOptions() {
+		getMenuOptions: function getMenuOptions() {
 			var options = [];
 			for (var i = 0; i < this.props.options.length; i++) {
 				var k = 'opt' + i;
@@ -20615,14 +20628,26 @@
 			}
 			return options;
 		},
-		render: function render() {
-			var options = this.makeOptions();
-			var menuClasses = "sideMenu";
-			var menuListClasses = "menuList";
+
+		// get classnames for the menu
+		getMenuClasses: function getMenuClasses() {
 			if (this.props.open) {
-				menuClasses += " open";
-				menuListClasses += " open";
+				return "sideMenu open";
 			}
+			return "sideMenu";
+		},
+
+		// get classnames for the interior list
+		getMenuListClasses: function getMenuListClasses() {
+			if (this.props.open) {
+				return "menuList open";
+			}
+			return "menuList";
+		},
+		render: function render() {
+			var options = this.getMenuOptions();
+			var menuClasses = this.getMenuClasses();
+			var menuListClasses = this.getMenuListClasses();
 			return _react2.default.createElement(
 				'div',
 				{ className: menuClasses, id: 'side-menu' },
@@ -20637,6 +20662,35 @@
 	});
 
 	exports.default = SideMenu;
+
+/***/ },
+/* 176 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var HeaderInfo = _react2.default.createClass({
+		displayName: "HeaderInfo",
+		render: function render() {
+			return _react2.default.createElement(
+				"h1",
+				{ className: "pageTitle" },
+				this.props.titleText
+			);
+		}
+	});
+
+	exports.default = HeaderInfo;
 
 /***/ }
 /******/ ]);

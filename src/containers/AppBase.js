@@ -14,29 +14,35 @@ var AppBase = React.createClass({
 	},
 	componentWillMount() {
 		this.setState({
-			menuOptions: ['Home', 'Market', 'Maps', 'Groups', 'Account']
+			menuOptions: ['home', 'market', 'maps', 'groups', 'account']
 		});
 	},
+	// what happens when the menu icon is clicked
 	toggleMenu(evt) {
 		this.setState({
 			menuOpen: !this.state.menuOpen
 		});
 	},
+	// what happens when a new menu option is selected
 	menuSelection(evt) {
 		var selection = parseInt(evt.target.getAttribute('data-optionIndex'));
 		this.setState({
 			activeOption: selection		
 		});
-		this.toggleMenu();
+		var that = this;
+		setTimeout(function() {
+			that.toggleMenu();
+		}, 240);
 	},
 	render() {
 		var menuOptions = this.state.menuOptions;
 		var activeOption = this.state.activeOption;
 		var menuOpen = this.state.menuOpen;
+		var headerTitle = activeOption > 0 ? menuOptions[activeOption] : "apptitle";
 		return (
 			<div className="appBase">
 				<div className="container">
-					<Header />
+					<Header titleText={headerTitle} />
 					<SideMenu iconClick={this.toggleMenu} options={menuOptions} selectNew={this.menuSelection} active={activeOption} open={menuOpen} />
 					<Footer />
 				</div>

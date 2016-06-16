@@ -3,7 +3,7 @@ import MenuOption from '../components/MenuOption';
 import MenuIcon from '../components/MenuIcon';
 
 var SideMenu = React.createClass({
-	makeOptions() {
+	getMenuOptions() {
 		var options = [];
 		for (var i = 0; i < this.props.options.length; i++) {
 			var k = 'opt' + i;
@@ -14,14 +14,24 @@ var SideMenu = React.createClass({
 		}
 		return options;
 	},
-	render() {
-		var options = this.makeOptions();
-		var menuClasses = "sideMenu";
-		var menuListClasses ="menuList";
+	// get classnames for the menu
+	getMenuClasses() {
 		if (this.props.open) {
-			menuClasses += " open";
-			menuListClasses += " open";
+			return "sideMenu open";
 		}
+		return "sideMenu";
+	},
+	// get classnames for the interior list
+	getMenuListClasses() {
+		if (this.props.open) {
+			return "menuList open";
+		}
+		return "menuList";	
+	},
+	render() {
+		var options = this.getMenuOptions();
+		var menuClasses = this.getMenuClasses();
+		var menuListClasses = this.getMenuListClasses();
 		return (
 			<div className={menuClasses} id="side-menu">
 				<MenuIcon iconClick={this.props.iconClick} />
