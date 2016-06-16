@@ -5,10 +5,16 @@ var MenuOption = React.createClass({
 		return this.props.text;	
 	},
 	render() {
+		var classes = "menuOption";
 		var text = this.getItemText();
+		if (this.props.active) {
+			classes += " active";
+		}
 		return (
-			<li className="menuOption">
-				{text}
+			<li className={classes}>
+				<a href="#" className="optionAnchor" onClick={this.props.selectNew} data-optionIndex={this.props.index}>
+					{text}
+				</a>
 			</li>
 		)
 	}
