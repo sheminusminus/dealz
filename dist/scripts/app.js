@@ -20396,11 +20396,15 @@
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _SideMenu = __webpack_require__(175);
+	var _SideMenu = __webpack_require__(172);
 
 	var _SideMenu2 = _interopRequireDefault(_SideMenu);
 
-	var _Footer = __webpack_require__(173);
+	var _Content = __webpack_require__(175);
+
+	var _Content2 = _interopRequireDefault(_Content);
+
+	var _Footer = __webpack_require__(176);
 
 	var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -20413,7 +20417,7 @@
 				menuOpen: false,
 				menuOptions: [],
 				activeOption: 0,
-				userInfo: {}
+				userInfo: null
 			};
 		},
 		componentWillMount: function componentWillMount() {
@@ -20444,7 +20448,8 @@
 			var menuOptions = this.state.menuOptions;
 			var activeOption = this.state.activeOption;
 			var menuOpen = this.state.menuOpen;
-			var headerTitle = activeOption > 0 ? menuOptions[activeOption] : "apptitle";
+			var headerTitle = activeOption > 0 ? menuOptions[activeOption] : "dealscover";
+			var user = this.state.userInfo;
 			return _react2.default.createElement(
 				'div',
 				{ className: 'appBase' },
@@ -20453,6 +20458,7 @@
 					{ className: 'container' },
 					_react2.default.createElement(_Header2.default, { titleText: headerTitle }),
 					_react2.default.createElement(_SideMenu2.default, { iconClick: this.toggleMenu, options: menuOptions, selectNew: this.menuSelection, active: activeOption, open: menuOpen }),
+					_react2.default.createElement(_Content2.default, { userInfo: user, contentType: menuOptions[activeOption] }),
 					_react2.default.createElement(_Footer2.default, null)
 				)
 			);
@@ -20475,7 +20481,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _HeaderInfo = __webpack_require__(176);
+	var _HeaderInfo = __webpack_require__(171);
 
 	var _HeaderInfo2 = _interopRequireDefault(_HeaderInfo);
 
@@ -20495,8 +20501,7 @@
 	exports.default = Header;
 
 /***/ },
-/* 171 */,
-/* 172 */
+/* 171 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -20511,90 +20516,21 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var MenuOption = _react2.default.createClass({
-		displayName: "MenuOption",
-
-		// get the text for this option
-		getItemText: function getItemText() {
-			return this.props.text;
-		},
-
-		// get the class names for this option
-		getItemClasses: function getItemClasses() {
-			if (this.props.active) {
-				return "menuOption active";
-			}
-			return "menuOption";
-		},
+	var HeaderInfo = _react2.default.createClass({
+		displayName: "HeaderInfo",
 		render: function render() {
-			var classes = this.getItemClasses();
-			var text = this.getItemText();
 			return _react2.default.createElement(
-				"li",
-				{ className: classes },
-				_react2.default.createElement(
-					"a",
-					{ href: "#", className: "optionAnchor", onClick: this.props.selectNew, "data-optionIndex": this.props.index },
-					text
-				)
+				"h1",
+				{ className: "pageTitle" },
+				this.props.titleText
 			);
 		}
 	});
 
-	exports.default = MenuOption;
+	exports.default = HeaderInfo;
 
 /***/ },
-/* 173 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var Footer = _react2.default.createClass({
-		displayName: "Footer",
-		render: function render() {
-			return _react2.default.createElement("div", { className: "footer" });
-		}
-	});
-
-	exports.default = Footer;
-
-/***/ },
-/* 174 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var MenuIcon = _react2.default.createClass({
-		displayName: "MenuIcon",
-		render: function render() {
-			return _react2.default.createElement("div", { className: "icon menuIcon", onClick: this.props.iconClick });
-		}
-	});
-
-	exports.default = MenuIcon;
-
-/***/ },
-/* 175 */
+/* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20607,7 +20543,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _MenuOption = __webpack_require__(172);
+	var _MenuOption = __webpack_require__(173);
 
 	var _MenuOption2 = _interopRequireDefault(_MenuOption);
 
@@ -20664,6 +20600,149 @@
 	exports.default = SideMenu;
 
 /***/ },
+/* 173 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var MenuOption = _react2.default.createClass({
+		displayName: "MenuOption",
+
+		// get the text for this option
+		getItemText: function getItemText() {
+			return this.props.text;
+		},
+
+		// get the class names for this option
+		getItemClasses: function getItemClasses() {
+			if (this.props.active) {
+				return "menuOption active";
+			}
+			return "menuOption";
+		},
+		render: function render() {
+			var classes = this.getItemClasses();
+			var text = this.getItemText();
+			return _react2.default.createElement(
+				"li",
+				{ className: classes },
+				_react2.default.createElement(
+					"a",
+					{ href: "#", className: "optionAnchor", onClick: this.props.selectNew, "data-optionIndex": this.props.index },
+					text
+				)
+			);
+		}
+	});
+
+	exports.default = MenuOption;
+
+/***/ },
+/* 174 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var MenuIcon = _react2.default.createClass({
+		displayName: "MenuIcon",
+		render: function render() {
+			return _react2.default.createElement(
+				"div",
+				{ className: "icon menuIcon", onClick: this.props.iconClick },
+				_react2.default.createElement("span", { className: "menuBar" }),
+				_react2.default.createElement("span", { className: "menuBar" })
+			);
+		}
+	});
+
+	exports.default = MenuIcon;
+
+/***/ },
+/* 175 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Account = __webpack_require__(177);
+
+	var _Account2 = _interopRequireDefault(_Account);
+
+	var _Groups = __webpack_require__(178);
+
+	var _Groups2 = _interopRequireDefault(_Groups);
+
+	var _Home = __webpack_require__(179);
+
+	var _Home2 = _interopRequireDefault(_Home);
+
+	var _Maproom = __webpack_require__(180);
+
+	var _Maproom2 = _interopRequireDefault(_Maproom);
+
+	var _Marketplace = __webpack_require__(181);
+
+	var _Marketplace2 = _interopRequireDefault(_Marketplace);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Content = _react2.default.createClass({
+		displayName: 'Content',
+		componentWillMount: function componentWillMount() {},
+		getContent: function getContent() {
+			if (this.props.contentType == 'marketplace') {
+				return _react2.default.createElement(_Marketplace2.default, null);
+			} else if (this.props.contentType == 'maproom') {
+				return _react2.default.createElement(_Maproom2.default, null);
+			} else if (this.props.contentType == 'groups') {
+				return _react2.default.createElement(_Groups2.default, null);
+			} else if (this.props.contentType == 'account') {
+				return _react2.default.createElement(_Account2.default, null);
+			} else {
+				return _react2.default.createElement(_Home2.default, null);
+			}
+		},
+		render: function render() {
+			var content = this.getContent();
+			var user = this.props.userInfo == null ? {} : this.props.userInfo;
+			return _react2.default.createElement(
+				'div',
+				{ className: 'content' },
+				content
+			);
+		}
+	});
+
+	exports.default = Content;
+
+/***/ },
 /* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -20679,18 +20758,139 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var HeaderInfo = _react2.default.createClass({
-		displayName: "HeaderInfo",
+	var Footer = _react2.default.createClass({
+		displayName: "Footer",
 		render: function render() {
-			return _react2.default.createElement(
-				"h1",
-				{ className: "pageTitle" },
-				this.props.titleText
-			);
+			return _react2.default.createElement("div", { className: "footer" });
 		}
 	});
 
-	exports.default = HeaderInfo;
+	exports.default = Footer;
+
+/***/ },
+/* 177 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Account = _react2.default.createClass({
+		displayName: "Account",
+		render: function render() {
+			return _react2.default.createElement("div", { className: "accountPage" });
+		}
+	});
+
+	exports.default = Account;
+
+/***/ },
+/* 178 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Groups = _react2.default.createClass({
+		displayName: "Groups",
+		render: function render() {
+			return _react2.default.createElement("div", { className: "groupsPage" });
+		}
+	});
+
+	exports.default = Groups;
+
+/***/ },
+/* 179 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Home = _react2.default.createClass({
+		displayName: "Home",
+		render: function render() {
+			return _react2.default.createElement("div", { className: "homePage" });
+		}
+	});
+
+	exports.default = Home;
+
+/***/ },
+/* 180 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Maproom = _react2.default.createClass({
+		displayName: "Maproom",
+		render: function render() {
+			return _react2.default.createElement("div", { className: "maproomPage" });
+		}
+	});
+
+	exports.default = Maproom;
+
+/***/ },
+/* 181 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Marketplace = _react2.default.createClass({
+		displayName: "Marketplace",
+		render: function render() {
+			return _react2.default.createElement("div", { className: "marketplace" });
+		}
+	});
+
+	exports.default = Marketplace;
 
 /***/ }
 /******/ ]);

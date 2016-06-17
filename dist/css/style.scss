@@ -38,7 +38,7 @@ body {
 .header {
 	width: 500px;
 	max-width: 100%;
-	height: 80px;	
+	height: 50px;	
 	margin: 0;
 }
 
@@ -49,6 +49,7 @@ body {
 	margin: 0;
 	color: $mainAccent;
 	font-variant: small-caps;
+	transform: scaleX(1.3);
 }
 
 .sideMenu {
@@ -106,6 +107,7 @@ body {
 	width: 100%;
 	overflow: hidden;
 	text-transform: capitalize;
+	text-align: center;
 	.optionAnchor {
 		text-decoration: none;
 		color: $menuOpt;
@@ -114,7 +116,7 @@ body {
 		max-width: 100%;
 		font-weight: 400;
 		display: block;
-		padding-left: 15px;
+// 		padding-left: 15px;
 		display: -webkit-box;
 		display: -ms-flexbox;
 		display: flex;
@@ -125,6 +127,7 @@ body {
 		-webkit-box-pack: center;
 		    -ms-flex-pack: center;
 		        justify-content: center;
+		        text-shadow: 0px 0px 5px #777;
 		&:hover {
 			background-color: $menuHover;
 		}
@@ -147,11 +150,27 @@ body {
 .menuIcon {
 	height: 30px;
 	width: 30px;
-	border-radius: 3px;
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
 	float: right;
-	margin: 10px 5px 0 0;
+	margin: 7px 5px 0 0;
 	background-color: $menuIcon;
 	opacity: 0.5;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	.menuBar {
+		display: block;
+		width: 60%;
+		height: 5px;
+		margin: 2px 19%;
+		background-color: $lightAccent;
+	}
+}
+
+.content {
+	height: 100%;
+	width: 100%;
 }
 
 @-webkit-keyframes openMenu {
